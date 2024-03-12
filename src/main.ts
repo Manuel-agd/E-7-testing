@@ -1,4 +1,4 @@
-const estiloartista = "color: green; font-size: 20px; font-weigth: bold";
+const estiloartista = "background: green; font-size: 20px; font-weight: bold";
 
 interface Grupomusical {
     artista: string;
@@ -13,8 +13,11 @@ const grupo1 : Grupomusical = {
     activo: true,
     genero: "Pop Rock",
 };
-console.log("%cThe Beatles", estiloartista);
-console.log (grupo1);
+
+console.log(`%c${grupo1.artista}`, estiloartista);
+console.log("Año de fundación:", grupo1.fundacion);
+console.log("En activo:", grupo1.activo);
+console.log("Género musical:", grupo1.genero);
 
 const grupo2 : Grupomusical = {
     artista: "Queen",
@@ -22,8 +25,10 @@ const grupo2 : Grupomusical = {
     activo: false,
     genero: "Rock",
 };
-console.log("%cQueen", estiloartista);
-console.log(grupo2);
+console.log(`%c${grupo2.artista}`, estiloartista);
+console.log("Año de fundación:", grupo2.fundacion);
+console.log("En activo:", grupo2.activo);
+console.log("Género musical:", grupo2.genero);
 
 const grupo3 : Grupomusical = {
     artista: "ACDC",
@@ -31,8 +36,10 @@ const grupo3 : Grupomusical = {
     activo: true,
     genero: "Hard Rock",
 };
-console.log("%cACDC", estiloartista);
-console.log(grupo3);
+console.log(`%c${grupo3.artista}`, estiloartista);
+console.log("Año de fundación:", grupo3.fundacion);
+console.log("En activo:", grupo3.activo);
+console.log("Género musical:", grupo3.genero);
 
 const grupo4 : Grupomusical = {
     artista: "Ludwig Van Beethoven",
@@ -40,8 +47,10 @@ const grupo4 : Grupomusical = {
     activo: false,
     genero: "Clasica",
 };
-console.log("%cLudwig Van Beethoven", estiloartista);
-console.log(grupo4);
+console.log(`%c${grupo4.artista}`, estiloartista);
+console.log("Año de fundación:", grupo4.fundacion);
+console.log("En activo:", grupo4.activo);
+console.log("Género musical:", grupo4.genero);
 
 const grupo5 : Grupomusical = {
     artista: "The Rolling Stones",
@@ -49,5 +58,8 @@ const grupo5 : Grupomusical = {
     activo: true,
     genero: "Rock",
 };
-console.log("%cThe Rolling Stones", estiloartista);
-console.log(grupo5); 
+console.log(`%c${grupo5.artista}`, estiloartista);
+console.log("Año de fundación:", grupo5.fundacion);
+console.log("En activo:", grupo5.activo);
+console.log("Género musical:", grupo5.genero);
+

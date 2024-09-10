@@ -1,28 +1,71 @@
-import { puntuacion}from './modelo';
-import { muestraMensaje } from './ui';
+import { partida } from "./modelo"
+//import { obtenerUrlCarta, pintarUrlCarta } from "./UI" // No depender de estos imports, crear nuevas funciones en motor
 
-export function pideCartas(): number {
-    let carta = Math.floor(Math.random() * 10) +1;
-    if (carta > 7) carta +=2;
+export let puntuacion = 0;
+
+export const pedirCarta = (): number => {
+    const carta = ajustarCarta(generarCarta());
+    const puntos = valorCarta(carta);
+    actualizarEstadoPartida (partida.puntuacion + puntos);
+    comprobarEstadoPartida();
     return carta;
 }
 
-export function gameOver(): void{
-    if(puntuacion > 7.5) {
-        muestraMensaje("Game Over! Te has pasado de 7.5 puntos");
-        deshabilitarBotones();
-        mostrarBtnNuevaPartida();
+
+export const generarCarta = (): number => {
+    return Math.floor(Math.random()*10) +1;
+}
+
+export const ajustarCarta = (carta:number) : number => {
+    if (carta > 7) {
+        return carta +2;
     }
+    return carta;
+} 
+
+export const valorCarta = (carta:number): number => {
+    if (carta >= 10) {
+        return 0.5;
+    } 
+    return carta;
 }
 
-export function deshabilitarBotones(): void{
-    const btnPedirCartas = document.getElementById("pedirCartas") as HTMLButtonElement;
-    const btnPlantarse = document.getElementById("plantarse") as HTMLButtonElement;
-    btnPedirCartas.disabled = true;
-    btnPlantarse.disabled = true;
+
+export const comprobarEstadoPartida = () =>{
+    if (partida.puntuacion === 7.5) {
+        partida.estadoPartida = "Gana";
+    } else if (partida.puntuacion > 7.5) {
+        partida.estadoPartida = "Pierde";
+        return;
+    } else {
+        partida.estadoPartida = "EnProgreso";
+    }
+
 }
 
-export function mostrarBtnNuevaPartida(): void{
-    const btnNuevaPartida = document.getElementById("nuevaPartida") as HTMLButtonElement;
-    btnNuevaPartida.style.display = 'block';
+export const actualizarEstadoPartida = (nuevosPuntos : number): void => {
+    partida.puntuacion = nuevosPuntos;
+    //muestraPuntuacion();   
 }
+
+export const obtenerMensaje = (): string => {
+    switch (true) {
+      case partida.puntuacion === 7.5:
+        return "¡Lo has clavado! ¡Enhorabuena!";
+      case partida.puntuacion > 7.5:
+        return "Game Over! Te has pasado de 7.5 puntos";
+      case partida.puntuacion < 4:
+        return "Has sido muy conservador";
+      case partida.puntuacion === 5:
+        return "Te ha entrado canguelo eh";
+      case partida.puntuacion === 6 || partida.puntuacion === 7:
+        return "Casi, casi...";
+      default:
+        return "";
+    }
+  };
+
+  export const reiniciarPartida = ():void =>{
+    partida.puntuacion = 0;
+    partida.estadoPartida = "NoInciado"
+  }

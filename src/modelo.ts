@@ -1,15 +1,23 @@
-/*import {puntuacion, pedirCarta, generarCarta, actualizarPuntos, ajustarCarta, valorCarta} from "./motor"
-import {obtenerUrlCarta, pintarUrlCarta, muestraPuntuacion, comprobarPartida, gameOver, nuevaPartida} from "./UI"*/
-export type EstadoPartida = "EnProgreso" | "Gana" | "Pierde" | "NoInciado"; // Type 
+export type EstadoPartida = "EnProgreso" | "Gana" | "Pierde" | "NoInciado"; // Type
 
-interface Partida {
-    estadoPartida : EstadoPartida;
-    valorCarta : number;
-    puntuacion : number;
+export interface Carta {
+    valor: number;
+    url: string;
 }
 
-export const partida : Partida = {
-    estadoPartida : "NoInciado",
-    valorCarta : 0,
-    puntuacion : 0
+export interface Partida {
+    estadoPartida: EstadoPartida;
+    carta: Carta;
+    puntuacionTotal: number;
+    mensaje: string;
+}
+
+export const partida: Partida = {
+    estadoPartida: "NoInciado",
+    carta: {
+        valor: 0,
+        url: "src/imagenes/back.jpg",
+    },
+    puntuacionTotal: 0,
+    mensaje: "",
 };
